@@ -1,4 +1,4 @@
-package TikTakToe;
+package TikTakToeProjekt;
 
 
 
@@ -12,17 +12,26 @@ public class TikTakToe {
     public static void main(String[] args) {
         System.out.println("");
         
-    for(int j = 0; j <= 2; j++){
-        for(int i = 0; i <= 2; i++){
-            System.out.print("|" + "  ");
-            
-        }
-        System.out.println("|");
-        //for(int v = 0; v <= 2; v++){
-        //    System.out.print("-");
-        //}
-        //System.out.println("|");
+        TikTakToeAnzeigen();
+
+   
+
     }
+
+    private static void TikTakToeAnzeigen(){
+
+        String[][] array = {
+            {"", "", ""},
+            {"", "", ""},
+            {"", "", ""}
+        };
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print("\"" + array[i][j] + "\" ");
+            }
+            System.out.println();
+        }
 
     }
 }

@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class TikTakToe { 
 
     
-    public static  String aktuellerSpieler = "X";
-    public static   int zug = 1;
+    public static String aktuellerSpieler = "X";
+    public static int zug = 1;
     public static boolean sieg = false;
     public static boolean unentschieden = false;
  
@@ -22,13 +22,13 @@ public class TikTakToe {
 
         while(!sieg && !unentschieden){
 
-        System.out.printf("Spieler %s ist am Zug\nBitte gib eine Zahl zwischen 0 und 8 ein", aktuellerSpieler);
+        System.out.printf("Spieler %s ist am Zug\nBitte geben sie eine Zahl zwischen 0 und 8 ein%n", aktuellerSpieler);
         int wahl = scanner.nextInt(); 
         TikTakToeAnzeigen(wahl);
         pruefeAufSieg();
-        if(!sieg && !unentschieden){
-        SpielerWechsel();
-        }
+            if(!sieg && !unentschieden){
+                SpielerWechsel();
+            }
         }
 
         ausgabeErgebnis();

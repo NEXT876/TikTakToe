@@ -29,13 +29,13 @@ public class TikTakToe {
             int wahl = Eingabepruefen(scanner);
 
             TikTakToeAnzeigen(wahl);
-            pruefeAufSieg();
+            PruefeAufSieg();
             if (!sieg && !unentschieden) {
                 SpielerWechsel();
             }
 
         }
-        ausgabeErgebnis();
+        AusgabeErgebnis();
         scanner.close();
     }
 
@@ -74,7 +74,7 @@ public class TikTakToe {
         System.out.println();
     }
 
-    private static void ausgabeErgebnis() {
+    private static void AusgabeErgebnis() {
 
         if (unentschieden) {
             System.out.println("unentschieden");
@@ -84,7 +84,7 @@ public class TikTakToe {
         }
     }
 
-    private static void pruefeAufSieg() {
+    private static void PruefeAufSieg() {
         // Check for horizontal win
         for (int i = 0; i <= 6; i += 3) {
             if (array[i].equals(aktuellerSpieler) && array[i + 1].equals(aktuellerSpieler)

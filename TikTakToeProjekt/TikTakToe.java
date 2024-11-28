@@ -55,6 +55,9 @@ public class TikTakToe {
 
         for (int i = 0; i <= 8; i += 3) {
             System.out.printf(" %s | %s | %s\n", array[i], array[i + 1], array[i + 2]);
+            if (i < 6) {
+                System.out.println("---+---+---");
+            }
         }
         System.out.println();
 
@@ -64,6 +67,9 @@ public class TikTakToe {
 
         for (int i = 0; i <= 8; i += 3) {
             System.out.printf(" %s | %s | %s\n", array[i], array[i + 1], array[i + 2]);
+            if (i < 6) {
+                System.out.println("---+---+---");
+            }
         }
         System.out.println();
     }

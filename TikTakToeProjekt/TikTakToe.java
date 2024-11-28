@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class TikTakToe {
 
-    public static String aktuellerSpieler = "X";
-    public static int zug = 1;
-    public static boolean sieg = false;
-    public static boolean unentschieden = false;
+    private static String aktuellerSpieler = "X";
+    private static int zug = 1;
+    private static boolean sieg = false;
+    private static boolean unentschieden = false;
 
     public static String[] array = {
             "0", "1", "2",
@@ -112,7 +112,7 @@ public class TikTakToe {
         }
 
         // Check for a tie (no empty spaces left)
-        if (zug > 9) {
+        if (zug == 9 && !sieg) {
             unentschieden = true;
         }
     }

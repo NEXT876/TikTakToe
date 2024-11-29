@@ -1,3 +1,3 @@
-# Simple TikTakToe
+#  TikTakToe Game
 
-In tihs repositorys i will programm a simple TikTakToe with java
+In tihs repositorys i am coding the TikTakToe Game with the programming language java

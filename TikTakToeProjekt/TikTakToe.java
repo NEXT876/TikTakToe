@@ -3,44 +3,53 @@ package TikTakToeProjekt;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
-public class TikTakToe {
+abstract class TikTakToe {
 
-    private static String aktuellerSpieler = "X";
-    private static int zug = 1;
-    private static boolean sieg = false;
-    private static boolean unentschieden = false;
+    protected final Logger logger = Logger.getLogger(TikTakToe.class.getName());
+    protected String aktuellerSpieler = "X";
+    protected int zug = 1;
+    protected boolean sieg = false;
+    protected boolean unentschieden = false;
 
-    public static String[] array = {
-            "0", "1", "2",
-            "3", "4", "5",
-            "6", "7", "8"
+    protected final String[] array = {
+            "1", "2", "3",
+            "4", "5", "6",
+            "7", "8", "9"
     };
 
-    public static void main(String[] args) {
+    /**
+     * public static void main(String[] args) {
+     * // Erstelle eine Instanz von TikTakToe
+     * TikTakToe game = new TikTakToe();
+     * game.startGame();
+     * }
+     */
+
+    // Neue Methode für den Start des Spiels
+    public void startGame() {
         Scanner scanner = new Scanner(System.in);
-        TikTakToeAnzeigen();
+        displayBoard();
 
         while (!sieg && !unentschieden) {
+            logger.info(String.format("Spieler %s ist am Zug. Bitte geben Sie eine Zahl zwischen 1 und 9 ein.", aktuellerSpieler));
 
-            System.out.printf("Spieler %s ist am Zug\nBitte geben sie eine Zahl zwischen 0 und 8 ein%n",
-                    aktuellerSpieler);
+            int wahl = eingabepruefen(scanner);
+            updateBoard(wahl);
 
-            int wahl = Eingabepruefen(scanner);
-
-            TikTakToeAnzeigen(wahl);
-            PruefeAufSieg();
-            if (!sieg && !unentschieden) {
-                SpielerWechsel();
+            if (zug >= 5) {
+                pruefeAufSieg();
             }
-
+            if (!sieg && !unentschieden) {
+                spielerWechsel();
+            }
         }
-        AusgabeErgebnis();
+        ausgabeErgebnis();
         scanner.close();
     }
 
-    private static void SpielerWechsel() {
-
+    private void spielerWechsel() {
         if (aktuellerSpieler.equals("X")) {
             aktuellerSpieler = "O";
         } else {
@@ -49,24 +58,14 @@ public class TikTakToe {
         zug++;
     }
 
-    private static void TikTakToeAnzeigen(int wahl) {
-
-        array[wahl] = aktuellerSpieler;
-
-        for (int i = 0; i <= 8; i += 3) {
-            System.out.printf(" %s | %s | %s\n", array[i], array[i + 1], array[i + 2]);
-            if (i < 6) {
-                System.out.println("---+---+---");
-            }
-        }
-        System.out.println();
-
+    private void updateBoard(int wahl) {
+        array[wahl - 1] = aktuellerSpieler;  // Update the array with the current player's move
+        displayBoard();                      // Call the displayBoard method to show the updated board
     }
 
-    private static void TikTakToeAnzeigen() {
-
+    private void displayBoard() {
         for (int i = 0; i <= 8; i += 3) {
-            System.out.printf(" %s | %s | %s\n", array[i], array[i + 1], array[i + 2]);
+            System.out.printf(" %s | %s | %s%n", array[i], array[i + 1], array[i + 2]);
             if (i < 6) {
                 System.out.println("---+---+---");
             }
@@ -74,17 +73,16 @@ public class TikTakToe {
         System.out.println();
     }
 
-    private static void AusgabeErgebnis() {
-
+    private void ausgabeErgebnis() {
         if (unentschieden) {
-            System.out.println("unentschieden");
+            System.out.println("Unentschieden");
         }
         if (sieg) {
             System.out.printf("Spieler %s hat gewonnen", aktuellerSpieler);
         }
     }
 
-    private static void PruefeAufSieg() {
+    private void pruefeAufSieg() {
         // Check for horizontal win
         for (int i = 0; i <= 6; i += 3) {
             if (array[i].equals(aktuellerSpieler) && array[i + 1].equals(aktuellerSpieler)
@@ -117,28 +115,8 @@ public class TikTakToe {
         }
     }
 
-    private static int Eingabepruefen(Scanner scanner) {
-        int wahl = -1;
-        while (wahl == -1) {
-            try {
-                wahl = scanner.nextInt();
-                if (wahl < 0 || wahl > 8) {
-                    System.out.println("Bitte nur Zahlen im Bereich von 0-8 eingeben");
-                    wahl = -1;
-                }
-                if (array[wahl].equals("X") || array[wahl].equals("O")) {
-                    System.out.println("Dieses Feld ist schon belegt");
-                    wahl = -1;
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Bitte nur Zahlen von 0-8 eingeben");
-                scanner.nextLine();
-            } catch (NoSuchElementException e) {
-                System.out.println("Bitte geben sie eine Zahl zwischen 0 und 8 ein");
-                scanner.nextLine();
-            }
-        }
-        return wahl;
-    }
+    abstract int eingabepruefen(Scanner scanner);
 
 }
+
+

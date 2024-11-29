@@ -5,8 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class One_vs_One_mode extends TikTakToe {
-    public static void main(String[] args) {
-    }
+
 
     public int eingabepruefen(Scanner scanner) {
         int wahl = -1;

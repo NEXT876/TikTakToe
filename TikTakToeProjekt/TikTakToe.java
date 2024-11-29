@@ -1,7 +1,6 @@
 package TikTakToeProjekt;
 
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
+
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -18,14 +17,6 @@ abstract class TikTakToe {
             "4", "5", "6",
             "7", "8", "9"
     };
-
-    /**
-     * public static void main(String[] args) {
-     * // Erstelle eine Instanz von TikTakToe
-     * TikTakToe game = new TikTakToe();
-     * game.startGame();
-     * }
-     */
 
     // Neue Methode für den Start des Spiels
     public void startGame() {

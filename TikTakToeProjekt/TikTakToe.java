@@ -1,6 +1,8 @@
 package TikTakToeProjekt;
 
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -37,10 +39,16 @@ abstract class TikTakToe {
             }
         }
         ausgabeErgebnis();
-        scanner.close();
+        System.out.println("Press R to restart or E to close ");
+        if (scanner.nextLine().equals("R")) {
+            startGame();
+        } else if (scanner.nextLine().equals("E")) {
+            scanner.close();
+            System.exit(0);
+        }
     }
 
-    private void spielerWechsel() {
+    protected void spielerWechsel() {
         if (aktuellerSpieler.equals("X")) {
             aktuellerSpieler = "O";
         } else {
@@ -49,12 +57,12 @@ abstract class TikTakToe {
         zug++;
     }
 
-    private void updateBoard(int wahl) {
+    protected void updateBoard(int wahl) {
         array[wahl - 1] = aktuellerSpieler;  // Update the array with the current player's move
         displayBoard();                      // Call the displayBoard method to show the updated board
     }
 
-    private void displayBoard() {
+    protected void displayBoard() {
         for (int i = 0; i <= 8; i += 3) {
             System.out.printf(" %s | %s | %s%n", array[i], array[i + 1], array[i + 2]);
             if (i < 6) {
@@ -64,7 +72,7 @@ abstract class TikTakToe {
         System.out.println();
     }
 
-    private void ausgabeErgebnis() {
+    protected void ausgabeErgebnis() {
         if (unentschieden) {
             System.out.println("Unentschieden");
         }
@@ -73,7 +81,7 @@ abstract class TikTakToe {
         }
     }
 
-    private void pruefeAufSieg() {
+    protected void pruefeAufSieg() {
         // Check for horizontal win
         for (int i = 0; i <= 6; i += 3) {
             if (array[i].equals(aktuellerSpieler) && array[i + 1].equals(aktuellerSpieler)
@@ -106,7 +114,28 @@ abstract class TikTakToe {
         }
     }
 
-    abstract int eingabepruefen(Scanner scanner);
+    protected int eingabepruefen(Scanner scanner) {
+        int wahl = -1;
+        while (wahl == -1) {
+            try {
+                wahl = scanner.nextInt();
+                if (wahl < 1 || wahl > 9) {
+                    System.out.println("Bitte nur Zahlen im Bereich von 1-9 eingeben");
+                    wahl = -1;
+                } else if (array[wahl - 1].equals("X") || array[wahl - 1].equals("O")) {
+                    System.out.println("Dieses Feld ist schon belegt");
+                    wahl = -1;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Bitte nur Zahlen von 1-9 eingeben");
+                scanner.nextLine();
+            } catch (NoSuchElementException e) {
+                System.out.println("Bitte geben sie eine Zahl zwischen 1 und 9 ein");
+                scanner.nextLine();
+            }
+        }
+        return wahl;
+    }
 
 }
 

@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 abstract class TikTakToe {
 
-  //  protected final Logger logger = Logger.getLogger(TikTakToe.class.getName());
+    //  protected final Logger logger = Logger.getLogger(TikTakToe.class.getName());
     protected String aktuellerSpieler = "X";
     protected int zug = 1;
     protected boolean sieg = false;
@@ -20,8 +20,8 @@ abstract class TikTakToe {
             "7", "8", "9"
     };
 
-    // Neue Methode für den Start des Spiels
-    public void startGame() {
+
+    protected void startGame() {
         Scanner scanner = new Scanner(System.in);
         displayBoard();
 

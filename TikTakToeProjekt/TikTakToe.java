@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 abstract class TikTakToe {
 
-    protected final Logger logger = Logger.getLogger(TikTakToe.class.getName());
+  //  protected final Logger logger = Logger.getLogger(TikTakToe.class.getName());
     protected String aktuellerSpieler = "X";
     protected int zug = 1;
     protected boolean sieg = false;
@@ -26,7 +26,7 @@ abstract class TikTakToe {
         displayBoard();
 
         while (!sieg && !unentschieden) {
-            logger.info(String.format("Spieler %s ist am Zug. Bitte geben Sie eine Zahl zwischen 1 und 9 ein.", aktuellerSpieler));
+            System.out.printf("Spieler %s ist am Zug.%nBitte geben Sie eine Zahl zwischen 1 und 9 ein.%n", aktuellerSpieler);
 
             int wahl = eingabepruefen(scanner);
             updateBoard(wahl);
@@ -39,13 +39,7 @@ abstract class TikTakToe {
             }
         }
         ausgabeErgebnis();
-        System.out.println("Press R to restart or E to close ");
-        if (scanner.nextLine().equals("R")) {
-            startGame();
-        } else if (scanner.nextLine().equals("E")) {
-            scanner.close();
-            System.exit(0);
-        }
+        scanner.close();
     }
 
     protected void spielerWechsel() {
@@ -64,7 +58,15 @@ abstract class TikTakToe {
 
     protected void displayBoard() {
         for (int i = 0; i <= 8; i += 3) {
-            System.out.printf(" %s | %s | %s%n", array[i], array[i + 1], array[i + 2]);
+            // Prüfe, ob das Feld "X" oder "O" enthält und setze die Farben entsprechend
+            String feld1 = array[i].equals("X") ? "\u001B[31mX\u001B[0m" : array[i].equals("O") ? "\u001B[32mO\u001B[0m" : array[i];
+            String feld2 = array[i + 1].equals("X") ? "\u001B[31mX\u001B[0m" : array[i + 1].equals("O") ? "\u001B[32mO\u001B[0m" : array[i + 1];
+            String feld3 = array[i + 2].equals("X") ? "\u001B[31mX\u001B[0m" : array[i + 2].equals("O") ? "\u001B[32mO\u001B[0m" : array[i + 2];
+
+            // Zeige die Felder an
+            System.out.printf(" %s | %s | %s%n", feld1, feld2, feld3);
+
+            // Trennlinie zwischen den Reihen, aber nicht nach der letzten Reihe
             if (i < 6) {
                 System.out.println("---+---+---");
             }

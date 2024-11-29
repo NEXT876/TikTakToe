@@ -4,7 +4,6 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import static java.lang.Math.random;
 
 public class One_vs_Robot_mode extends TikTakToe {
 
@@ -14,7 +13,7 @@ public class One_vs_Robot_mode extends TikTakToe {
 
         while (!sieg && !unentschieden) {
             if (aktuellerSpieler.equals("X")) {
-                logger.info(String.format("Spieler %s ist am Zug. Bitte geben Sie eine Zahl zwischen 1 und 9 ein.", aktuellerSpieler));
+                System.out.printf("Sie sind dran%nBitte geben Sie eine Zahl zwischen 1 und 9 ein.%n");
             }
 
             int wahl = eingabepruefen(scanner);
@@ -28,14 +27,8 @@ public class One_vs_Robot_mode extends TikTakToe {
             }
         }
         ausgabeErgebnis();
+        scanner.close();
 
-        System.out.println("Press R to restart or E to close ");
-        if (scanner.nextLine().equals("R")) {
-            startGame();
-        } else if (scanner.nextLine().equals("E")) {
-            scanner.close();
-            System.exit(0);
-        }
     }
 
     public int eingabepruefen(Scanner scanner) {
@@ -78,9 +71,9 @@ public class One_vs_Robot_mode extends TikTakToe {
         }
         if (sieg) {
             if (aktuellerSpieler.equals("X")) {
-                System.out.println("Spieler X hat gewonnen");
+                System.out.println("Sie haben gewonnen");
             } else {
-                System.out.println("Der Computer hat gewonnen");
+                System.out.println("Sie haben verloren");
             }
         }
     }

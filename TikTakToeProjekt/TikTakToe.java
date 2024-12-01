@@ -79,7 +79,7 @@ abstract class TikTakToe {
             System.out.println("Unentschieden");
         }
         if (sieg) {
-            System.out.printf("Spieler %s hat gewonnen", aktuellerSpieler);
+            System.out.printf("Spieler %s hat gewonnen%n", aktuellerSpieler);
         }
     }
 

@@ -4,15 +4,16 @@ package TikTakToeProjekt;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-import java.util.logging.Logger;
+
 
 abstract class TikTakToe {
 
-    //  protected final Logger logger = Logger.getLogger(TikTakToe.class.getName());
+    protected Scanner scanner;
     protected String aktuellerSpieler = "X";
     protected int zug = 1;
     protected boolean sieg = false;
     protected boolean unentschieden = false;
+    
 
     protected final String[] array = {
             "1", "2", "3",
@@ -22,7 +23,7 @@ abstract class TikTakToe {
 
 
     protected void startGame() {
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         displayBoard();
 
         while (!sieg && !unentschieden) {
@@ -39,7 +40,7 @@ abstract class TikTakToe {
             }
         }
         ausgabeErgebnis();
-        scanner.close();
+       // scanner.close();
     }
 
     protected void spielerWechsel() {

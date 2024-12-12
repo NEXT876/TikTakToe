@@ -1,5 +1,3 @@
-package TikTakToeProjekt;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -9,11 +7,11 @@ public class Main {
     public static void main(String[] args) {
         boolean play = true;
 
-        System.out.printf("%nHallo,%nWilkommen zu TikTakToe%n");
+        System.out.printf("%nHallo,%nWillkommen zu TikTakToe%n");
         System.out.printf(
-                "Bevor wir beginnen bitte waehlen sie einen Spielmodus aus:%nGeben sie 1 ein für den Spielmodus \"1 vs 1\" und 2 um gegen einen Computer zu spielen%n");
+                "Bevor wir beginnen bitte wählen sie einen Spielmodus aus:%nGeben sie 1 ein für den Spielmodus \"1 vs 1\" und 2 um gegen einen Computer zu spielen%n");
 
-        int modus = moduswahl();
+        int modus = modeChoice();
         while (play) {
             if (modus == 1) {
                 One_vs_One_mode game = new One_vs_One_mode(scanner);
@@ -29,17 +27,17 @@ public class Main {
         scanner.close();
     }
 
-    private static int moduswahl() {
+    private static int modeChoice() {
         int mode = 0;
         while (mode == 0) {
             try {
                 mode = scanner.nextInt();
                 if (mode != 1 && mode != 2) {
-                    System.out.println("Bitte wählen sie einen gütligen Modus aus!");
+                    System.out.println("Bitte wählen sie einen gültigen Modus aus!");
                     mode = 0;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Bitte wählen sie einen gütligen Modus aus!");
+                System.out.println("Bitte wählen sie einen gültigen Modus aus!");
                 mode = 0;
                 scanner.next();
             }
@@ -69,7 +67,7 @@ public class Main {
                 System.out.println("Keine Option");
             }
 
-                return play;
+            return play;
         }
     }
 }

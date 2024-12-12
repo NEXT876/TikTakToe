@@ -1,6 +1,3 @@
-package TikTakToeProjekt;
-
-
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -8,19 +5,16 @@ import java.util.Scanner;
 
 abstract class TikTakToe {
 
-    protected Scanner scanner;
-    protected String aktuellerSpieler = "X";
-    protected int zug = 1;
-    protected boolean sieg = false;
-    protected boolean unentschieden = false;
-    
-
     protected final String[] array = {
             "1", "2", "3",
             "4", "5", "6",
             "7", "8", "9"
     };
-
+    protected Scanner scanner;
+    protected String aktuellerSpieler = "X";
+    protected int zug = 1;
+    protected boolean sieg = false;
+    protected boolean unentschieden = false;
 
     protected void startGame() {
         //Scanner scanner = new Scanner(System.in);
@@ -29,18 +23,18 @@ abstract class TikTakToe {
         while (!sieg && !unentschieden) {
             System.out.printf("Spieler %s ist am Zug.%nBitte geben Sie eine Zahl zwischen 1 und 9 ein.%n", aktuellerSpieler);
 
-            int wahl = eingabepruefen(scanner);
+            int wahl = checkInput(scanner);
             updateBoard(wahl);
 
             if (zug >= 5) {
-                pruefeAufSieg();
+                checkOnWin();
             }
             if (!sieg && !unentschieden) {
                 spielerWechsel();
             }
         }
         ausgabeErgebnis();
-       // scanner.close();
+        // scanner.close();
     }
 
     protected void spielerWechsel() {
@@ -84,7 +78,7 @@ abstract class TikTakToe {
         }
     }
 
-    protected void pruefeAufSieg() {
+    protected void checkOnWin() {
         // Check for horizontal win
         for (int i = 0; i <= 6; i += 3) {
             if (array[i].equals(aktuellerSpieler) && array[i + 1].equals(aktuellerSpieler)
@@ -117,7 +111,7 @@ abstract class TikTakToe {
         }
     }
 
-    protected int eingabepruefen(Scanner scanner) {
+    protected int checkInput(Scanner scanner) {
         int wahl = -1;
         while (wahl == -1) {
             try {
@@ -141,5 +135,3 @@ abstract class TikTakToe {
     }
 
 }
-
-

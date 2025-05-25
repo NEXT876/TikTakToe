@@ -1,3 +1,3 @@
 #  TikTakToe Game
 
-In tihs repositorys i am coding the TikTakToe Game with the programming language java
+A simple Text based TikTakToe Game written in java
